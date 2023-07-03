@@ -27,10 +27,30 @@ class Controller extends BaseController
         $ky->nama = $r->nama;
         $ky->divisi_id = $r->divisi;
         $ky->save();
+        $nki = Karyawan::latest()->get();
+
+        $n = new Penilaian();
+        $n->karyawan_id = $nki[0]->id;
+        $n->kompetensi_id = 1;
+        $n->nilai = 0;
+        $n->save();
+
+        $n2 = new Penilaian();
+        $n2->karyawan_id = $nki[0]->id;
+        $n2->kompetensi_id = 2;
+        $n2->nilai = 0;
+        $n2->save();
+
+        $n3 = new Penilaian();
+        $n3->karyawan_id = $nki[0]->id;
+        $n3->kompetensi_id = 3;
+        $n3->nilai = 0;
+        $n3->save();
         return redirect('/dashboard');
     }
     public function lihatdash()
     {
+
         $ky = Karyawan::with('divisi', 'penilaian')->get();
         // dd($ky[0]->penilaian[0]->nilai);
         return view('dashboard', compact('ky'));

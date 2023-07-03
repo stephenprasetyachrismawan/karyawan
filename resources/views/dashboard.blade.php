@@ -12,7 +12,7 @@
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
-                            <a href="{{ route('tambahkaryawan') }}"><button class="btn btn-success">Tambah
+                            <a href="{{ route('viewtambahkaryawan') }}"><button class="btn btn-success">Tambah
                                     Karyawan</button></a>
                             <table id="example" class="display" style="width:100%">
                                 <thead>
@@ -44,7 +44,7 @@
                                                         class="btn btn-primary">Beri Nilai</button></a>
                                                 <a href="{{ route('karyawanedit', ['id' => $k->id]) }}"><button
                                                         class="btn btn-primary">Edit Profile</button></a>
-                                                <form action="{{ route('karyawanedit', ['id' => $k->id]) }}"
+                                                <form action="{{ route('hapuskaryawan', ['id' => $k->id]) }}"
                                                     method="post">
                                                     @csrf
                                                     @method('delete')

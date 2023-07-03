@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('penilaians', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('karyawan_id');
-            $table->foreign('karyawan_id')->references('id')->on('karyawans');
+            $table->foreign('karyawan_id')->references('id')->on('karyawans')->onDelete('cascade');
             $table->unsignedBigInteger('kompetensi_id');
             $table->foreign('kompetensi_id')->references('id')->on('kompetensis');
             $table->integer('nilai');
