@@ -11,6 +11,7 @@
                 <div class="py-12">
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+
                             <a href="{{ route('tambahkaryawan') }}"><button class="btn btn-success">Tambah
                                     Karyawan</button></a>
                             <table id="example" class="display" style="width:100%">
@@ -33,9 +34,10 @@
                                                 @endphp
                                                 @foreach ($k->penilaian as $n)
                                                     @php
-                                                        $nt += $k->penilaian->nilai;
+                                                        $nt += $n->nilai;
                                                     @endphp
                                                 @endforeach
+                                                {{ $nt }}
                                             </td>
                                             <td>
                                                 <a href="{{ route('viewnilaikaryawan', ['id' => $k->id]) }}"><button

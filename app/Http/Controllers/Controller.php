@@ -32,6 +32,7 @@ class Controller extends BaseController
     public function lihatdash()
     {
         $ky = Karyawan::with('divisi', 'penilaian')->get();
+        // dd($ky[0]->penilaian[0]->nilai);
         return view('dashboard', compact('ky'));
     }
     public function vieweditkaryawan($id)
@@ -69,6 +70,8 @@ class Controller extends BaseController
         // $t = 0;
         // $k = 0;
         // $d = Penilaian::where()
+        $x = Penilaian::where('karyawan_id', $r->id)->delete();
+
         $n = new Penilaian();
         $n->karyawan_id = $r->id;
         $n->kompetensi_id = 1;
