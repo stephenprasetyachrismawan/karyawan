@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Form Tambah Karyawan') }}
+            {{ __('Form Edit Karyawan') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -10,9 +10,10 @@
                 <div class="m-7 card card-compact w-96 bg-base-50 shadow-xl">
 
                     <div class="card-body">
-                        <h2 class="card-title">Tambah Data Karyawan</h2>
+                        <h2 class="card-title">Edit Data Karyawan</h2>
                         <form action={{ route('updatekaryawan') }} method="post">
                             @csrf
+                            <input type="hidden" name="id" value="{{ $k->id }}">
                             <input type="text" placeholder="Nama"
                                 class="input input-bordered input-secondary w-full max-w-xs" name="nama"
                                 value="{{ $k->nama }}" />
@@ -24,7 +25,7 @@
 
                             </select>
                             <div class="card-actions justify-end">
-                                <input type="submit" class="btn btn-primary" value="Tambah">
+                                <input type="submit" class="btn btn-primary" value="Simpan">
 
                             </div>
                         </form>

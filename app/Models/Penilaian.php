@@ -12,10 +12,10 @@ class Penilaian extends Model
     use HasFactory;
     public function karyawan()
     {
-        return $this->hasMany(Karyawan::class);
+        return $this->belongsTo(Karyawan::class);
     }
     public function kompetensi()
     {
-        return $this->hasMany(Kompetensi::class);
+        return $this->belongsTo(Kompetensi::class);
     }
 }

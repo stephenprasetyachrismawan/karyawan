@@ -11,11 +11,14 @@
                 <div class="py-12">
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                            <a href="{{ route('tambahkaryawan') }}"><button class="btn btn-success">Tambah
+                                    Karyawan</button></a>
                             <table id="example" class="display" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Nama</th>
                                         <th>Divisi</th>
+                                        <th>Nilai Total</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -25,9 +28,28 @@
                                             <td>{{ $k->nama }}</td>
                                             <td>{{ $k->divisi->nama_divisi }}</td>
                                             <td>
-                                                <button class="btn btn-primary">Beri Nilai</button>
+                                                @php
+                                                    $nt = 0;
+                                                @endphp
+                                                @foreach ($k->penilaian as $n)
+                                                    @php
+                                                        $nt += $k->penilaian->nilai;
+                                                    @endphp
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('viewnilaikaryawan', ['id' => $k->id]) }}"><button
+                                                        class="btn btn-primary">Beri Nilai</button></a>
                                                 <a href="{{ route('karyawanedit', ['id' => $k->id]) }}"><button
                                                         class="btn btn-primary">Edit Profile</button></a>
+                                                <form action="{{ route('karyawanedit', ['id' => $k->id]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <input type="submit" class="btn btn-error" value="Hapus Karyawan">
+                                                </form>
+
+
 
                                             </td>
 
@@ -39,6 +61,7 @@
                                     <tr>
                                         <th>Nama</th>
                                         <th>Divisi</th>
+                                        <th>Nilai</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </tfoot>

@@ -10,6 +10,6 @@ class Kompetensi extends Model
     use HasFactory;
     public function penilaian()
     {
-        return $this->belongsTo(Penilaian::class);
+        return $this->hasMany(Penilaian::class);
     }
 }

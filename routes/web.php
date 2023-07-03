@@ -16,7 +16,7 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('dashboard');
 });
 
 Route::get('/dashboard', [Controller::class, 'lihatdash'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -26,13 +26,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::middleware('auth')->group(
+Route::middleware(['auth', 'verified'])->group(
     function () {
         Route::get('/data', [Controller::class, 'datatable'])->name('datatable');
         Route::get('/tambahkaryawan', [Controller::class, 'viewtambahkaryawan'])->name('viewtambahkaryawan');
         Route::get('/karyawanedit/{id}', [Controller::class, 'vieweditkaryawan'])->name('karyawanedit');
+        Route::get('/nilai/{id}', [Controller::class, 'viewnilaikaryawan'])->name('viewnilaikaryawan');
         Route::post('/kirimtambahkaryawan', [Controller::class, 'tambahkaryawan'])->name('tambahkaryawan');
         Route::post('/updatekaryawan', [Controller::class, 'updatekaryawan'])->name('updatekaryawan');
+        Route::post('/updatenilai', [Controller::class, 'updatenilai'])->name('updatenilai');
+        Route::delete('/hapuskaryawan/{id}', [Controller::class, 'hapuskaryawan'])->name('hapuskaryawan');
     }
 );
 
